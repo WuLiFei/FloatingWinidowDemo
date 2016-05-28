@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent" >
+
+    <LinearLayout
+        android:background="@drawable/shape_background_dark"
+        android:layout_centerInParent="true"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:orientation="vertical"
+        android:paddingRight="12dp"
+        android:paddingLeft="12dp"
+        android:paddingTop="8dp"
+        android:gravity="center" >
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:id="@+id/player_displayname"
+            android:focusableInTouchMode="true"
+            android:ellipsize="marquee"
+            android:layout_width="180dp"
+            android:textColor="#11CD6E"
+            android:singleLine="true"
+            android:focusable="true"
+            tools:text="浅唱 - 许嵩"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:text="N/A" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/player_progress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="3dp"
+                tools:text="04:15"
+                android:text="--:--"
+                android:textColor="#11CD6E"
+                android:textSize="8sp" />
+
+            <TextView
+                android:id="@+id/player_duration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:layout_alignParentRight="true"
+                android:textColor="#11CD6E"
+                android:layout_marginTop="3dp"
+                android:text="--:--"
+                tools:text="12:45"
+                android:textSize="8sp" />
+        </RelativeLayout>
+
+        <SeekBar
+            android:id="@+id/player_seek"
+            tools:progress="50"
+            android:progress="0"
+            android:max="100"
+            tools:secondaryProgress="90"
+            android:paddingBottom="3dp"
+            android:progressDrawable="@drawable/layer_seekbar"
+            android:thumb="@drawable/shape_thumb"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:minHeight="2dp"
+            android:maxHeight="2dp" />
+
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="6dp" >
+
+            <ImageButton
+                android:background="@null"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:id="@+id/player_previous"
+                android:src="@mipmap/landscape_player_btn_pre_press" />
+
+            <ImageButton
+                android:background="@null"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:id="@+id/player_play"
+                android:layout_marginLeft="18dp"
+                android:layout_marginRight="18dp"
+                android:src="@mipmap/landscape_player_btn_play_press" />
+
+            <ImageButton
+                android:background="@null"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:id="@+id/player_next"
+                android:src="@mipmap/landscape_player_btn_next_press" />
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

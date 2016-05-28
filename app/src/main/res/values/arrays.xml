@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="res_names">
+        <item>http://file.bmob.cn/M03/7F/F0/oYYBAFdFYh-AE_J1AI_wXc_rRqI724.mp3</item>
+        <item>http://file.bmob.cn/M03/01/1F/oYYBAFb4h0uAQLufAE8BpAeKTGE542.mp3</item>
+        <item>http://file.bmob.cn/M03/80/B6/oYYBAFdHmiWABL4BADxZu1-oiaw235.mp3</item>
+        <item>http://file.bmob.cn/M03/46/32/oYYBAFcfB32AJzVZAFK420C4ZHM831.mp3</item>
+        <item>http://file.bmob.cn/M03/46/31/oYYBAFcfBwaAKJ4xAE6zxHaI3uM740.mp3</item>
+        <item>http://file.bmob.cn/M03/19/96/oYYBAFcEqXiAEqtYADz8HHZWiM4012.mp3</item>
+    </string-array>
+    <string-array name="dis_names">
+        <item>意外 - 薛之谦</item>
+        <item>小孩 - 薛之谦</item>
+        <item>时光倒回 - 郑恺</item>
+        <item>一个人的北京 - 好妹妹乐队</item>
+        <item>可不可以爱我 - 卢学睿</item>
+        <item>陪你度过漫长的岁月 - 陈奕迅</item>
+    </string-array>
+</resources>
