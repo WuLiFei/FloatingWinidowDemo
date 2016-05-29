@@ -466,7 +466,7 @@ public class FloatWindow {
                 case WHAT_HIDE:
                     if(System.currentTimeMillis() - lastTouchTimeMillis >= 3500) {
                         if(!isOpen) {
-                            getLayoutParams().alpha = 0.5f;
+                            getLayoutParams().alpha = 0.4f;
                             getWindowManager().updateViewLayout(getContentView(), getLayoutParams());
                         }
                     } else {
