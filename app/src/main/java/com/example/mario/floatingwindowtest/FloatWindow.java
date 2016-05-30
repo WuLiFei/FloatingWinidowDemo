@@ -297,6 +297,7 @@ public class FloatWindow {
         if(isOpen) {
             return ;
         }
+        getLayoutParams().flags &= ~(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);//
         getLayoutParams().height = WindowManager.LayoutParams.MATCH_PARENT;  //
         getLayoutParams().width = WindowManager.LayoutParams.MATCH_PARENT;  //
         oldX = getLayoutParams().x;
@@ -314,6 +315,8 @@ public class FloatWindow {
             return ;
         }
         isOpen = false;
+        getLayoutParams().flags &= ~(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);//
+        getLayoutParams().flags |= WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;
         getLayoutParams().height = WindowManager.LayoutParams.WRAP_CONTENT;
         getLayoutParams().width = WindowManager.LayoutParams.WRAP_CONTENT;
         setContentView(mFloatView);
