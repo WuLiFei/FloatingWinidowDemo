@@ -1,4 +1,6 @@
-package com.example.mario.floatingwindowtest;
+package com.example.mario.floatingwindowtest.services;
+
+import com.example.mario.floatingwindowtest.services.AudioState;
 
 /**
  * Created by MarioStudio on 2016/5/25.

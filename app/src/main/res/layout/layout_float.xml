@@ -16,9 +16,9 @@
             android:layout_height="match_parent" />
 
         <ImageView
-            android:id="@+id/mini_hander"
+            android:id="@+id/mini_handle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/rotate_hander" />
+            android:src="@drawable/rotate_handle"/>
     </RelativeLayout>
 </RelativeLayout>

@@ -3,57 +3,51 @@
     android:layout_height="match_parent"
     android:layout_width="match_parent"
     android:gravity="center_horizontal"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:background="#F8F8F8" >
 
     <View
         android:layout_width="match_parent"
         android:background="#FF222222"
-        android:layout_height="64dp" />
+        android:layout_height="72dp" />
+
+    <include
+        android:layout_width="match_parent"
+        android:layout_marginTop="24dp"
+        layout="@layout/universal_div"
+        android:layout_height="1px"/>
 
     <LinearLayout
-        android:gravity="center"
+        android:layout_width="match_parent"
+        android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true" >
+        android:layout_height="64dp"
+        android:paddingRight="12dp"
+        android:paddingLeft="12dp" >
 
-        <ImageButton
-            android:id="@+id/main_previous"
-            android:background="@null"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
-            android:src="@mipmap/landscape_player_btn_pre_press" />
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="是否开启悬浮窗"
+            android:textColor="#727272"
+            android:textSize="18sp" />
 
-        <ImageButton
-            android:id="@+id/main_play"
-            android:background="@null"
-            android:layout_width="81dp"
-            android:layout_height="81dp"
-            android:src="@mipmap/landscape_player_btn_play_press" />
+        <View
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent" />
 
-        <ImageButton
-            android:id="@+id/main_next"
-            android:background="@null"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
-            android:src="@mipmap/landscape_player_btn_next_press" />
+        <CheckBox
+            android:id="@+id/main_check_box"
+            android:background="@drawable/selector_check_box"
+            android:layout_height="24dp"
+            android:layout_width="48dp"
+            android:button="@null" />
     </LinearLayout>
 
-    <View
+    <include
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"/>
-
-    <Button
-        android:padding="12dp"
-        android:textSize="18sp"
-        android:text="悬浮窗 (打开)"
-        android:textColor="#FFFFFFFF"
-        android:id="@+id/main_switch"
         android:layout_marginLeft="12dp"
-        android:layout_marginRight="12dp"
-        android:layout_marginBottom="6dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/shape_button"/>
+        layout="@layout/universal_div"
+        android:layout_height="1px"/>
 </LinearLayout>

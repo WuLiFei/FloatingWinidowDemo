@@ -1,4 +1,4 @@
-package com.example.mario.floatingwindowtest;
+package com.example.mario.floatingwindowtest.services;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -17,11 +17,17 @@ import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import com.example.mario.floatingwindowtest.FloatWindow;
+import com.example.mario.floatingwindowtest.utils.ProgressTextUtils;
+import com.example.mario.floatingwindowtest.R;
+
 import java.io.IOException;
 
-import static com.example.mario.floatingwindowtest.AudioState.STATE_PLAYING;
-import static com.example.mario.floatingwindowtest.AudioState.STATE_PRERARE;
-import static com.example.mario.floatingwindowtest.AudioState.STATE_STOP;
+import static com.example.mario.floatingwindowtest.services.AudioState.STATE_PAUSE;
+import static com.example.mario.floatingwindowtest.services.AudioState.STATE_PLAYING;
+import static com.example.mario.floatingwindowtest.services.AudioState.STATE_PREPARE;
+import static com.example.mario.floatingwindowtest.services.AudioState.STATE_READY;
+import static com.example.mario.floatingwindowtest.services.AudioState.STATE_STOP;
 
 /**
  * Created by MarioStudio on 2016/5/23.
@@ -53,10 +59,10 @@ public class MusicService extends Service implements PlayerInterface, View.OnCli
 
     @Override
     public IBinder onBind(Intent intent) {
-        return new WindowBinder();
+        return new MusicBinder();
     }
 
-    public class WindowBinder extends Binder {
+    public class MusicBinder extends Binder {
         public MusicService getService() {
             return MusicService.this;
         }
@@ -89,7 +95,7 @@ public class MusicService extends Service implements PlayerInterface, View.OnCli
         btnNex.setOnClickListener(this);
 
         imgCD = (ImageView) floatView.findViewById(R.id.mini_cd);
-        imgController = (ImageView) floatView.findViewById(R.id.mini_hander);
+        imgController = (ImageView) floatView.findViewById(R.id.mini_handle);
 
         floatWindow = new FloatWindow(this);
         floatWindow.setFloatView(floatView);
@@ -116,10 +122,10 @@ public class MusicService extends Service implements PlayerInterface, View.OnCli
 
     @Override
     public void start() {
-        if(audioState == STATE_STOP) {
-            audioStart();
-        } else {
+        if(audioState == STATE_PAUSE || audioState == STATE_READY) {
             startAnimator().start();
+        } else {
+            audioStart();
         }
     }
 
@@ -130,7 +136,7 @@ public class MusicService extends Service implements PlayerInterface, View.OnCli
 
     @Override
     public void previous() {
-        if(animatorState == AnimatorState.STATE_END && audioState != STATE_PRERARE) {
+        if(animatorState == AnimatorState.STATE_END && audioState != STATE_PREPARE) {
             imgCD.getDrawable().setLevel(0);
             // 判断如果当前处于播放状态的话，给一个停止动画，否则直接进行播放动画
             if(audioState == STATE_PLAYING) {
@@ -143,7 +149,7 @@ public class MusicService extends Service implements PlayerInterface, View.OnCli
 
     @Override
     public void next() {
-        if(animatorState == AnimatorState.STATE_END && audioState != STATE_PRERARE) {
+        if(animatorState == AnimatorState.STATE_END && audioState != STATE_PREPARE) {
             imgCD.getDrawable().setLevel(0);
             // 判断如果当前处于播放状态的话，给一个停止动画，否则直接进行播放动画
             if(audioState == STATE_PLAYING) {
@@ -185,7 +191,7 @@ public class MusicService extends Service implements PlayerInterface, View.OnCli
             mediaPlayer.setOnBufferingUpdateListener(this);
             mediaPlayer.setDataSource(res_names[position]);
             textDisplay.setText(dis_names[position]);  //  设置显示
-            setAudioState(STATE_PRERARE);
+            setAudioState(STATE_PREPARE);
             mediaPlayer.prepareAsync();
         } catch (IOException e) {
             e.printStackTrace();
@@ -233,10 +239,12 @@ public class MusicService extends Service implements PlayerInterface, View.OnCli
         switch (audioState) {
             case STATE_PLAYING:
                 break;
+            case STATE_PREPARE:
+                break;
             case STATE_STOP:
                 audioPrepare();
                 break;
-            case STAT_READY:
+            case STATE_READY:
                 mediaPlayer.start();
                 setAudioState(STATE_PLAYING);
                 break;
@@ -254,7 +262,7 @@ public class MusicService extends Service implements PlayerInterface, View.OnCli
 
     @Override
     public void onPrepared(MediaPlayer mediaPlayer) {
-        setAudioState(AudioState.STAT_READY);
+        setAudioState(AudioState.STATE_READY);
     }
 
     @Override
@@ -305,10 +313,10 @@ public class MusicService extends Service implements PlayerInterface, View.OnCli
             case STATE_PLAYING:
                 isPlaying();
                 break;
-            case STATE_PRERARE:
+            case STATE_PREPARE:
                 isPrepare();
                 break;
-            case STAT_READY:
+            case STATE_READY:
                 isReady();
                 break;
             case STATE_PAUSE:

@@ -230,7 +230,7 @@ public class FloatWindow {
      * 隐藏当前显示窗口
      * */
     public void dismiss() {
-        if(getContentView() != null) {
+        if(getContentView() != null && isShowing()) {
             getWindowManager().removeView(getContentView());
             mIsShowing = false;
         }
@@ -293,11 +293,11 @@ public class FloatWindow {
     /**
      * 打开选项菜单
      * */
-    public void openMenu() {
+    public void showPlayer() {
         if(isOpen) {
             return ;
         }
-        getLayoutParams().flags &= ~(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);//
+        getLayoutParams().flags &= ~(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);// 取消WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE属性
         getLayoutParams().height = WindowManager.LayoutParams.MATCH_PARENT;  //
         getLayoutParams().width = WindowManager.LayoutParams.MATCH_PARENT;  //
         oldX = getLayoutParams().x;
@@ -310,13 +310,13 @@ public class FloatWindow {
     /**
      * 关闭选项菜单
      * */
-    public void closeMenu() {
+    public void turnMini() {
         if(!isOpen) {
             return ;
         }
         isOpen = false;
-        getLayoutParams().flags &= ~(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);//
-        getLayoutParams().flags |= WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;
+        getLayoutParams().flags &= ~(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);// 取消WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE属性
+        getLayoutParams().flags |= WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;//重新设置WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE属性
         getLayoutParams().height = WindowManager.LayoutParams.WRAP_CONTENT;
         getLayoutParams().width = WindowManager.LayoutParams.WRAP_CONTENT;
         setContentView(mFloatView);
@@ -327,7 +327,7 @@ public class FloatWindow {
     }
 
     /**
-     *
+     * 带有按键监听事件和触摸事件的BackgroundView
      * */
     class BackgroundView extends RelativeLayout {
 
@@ -351,7 +351,7 @@ public class FloatWindow {
                 } else if (event.getAction() == KeyEvent.ACTION_UP) {
                     final KeyEvent.DispatcherState state = getKeyDispatcherState();
                     if (state != null && state.isTracking(event) && !event.isCanceled()) {
-                        closeMenu();
+                        turnMini();
                         return true;
                     }
                 }
@@ -365,10 +365,10 @@ public class FloatWindow {
         public boolean onTouchEvent(MotionEvent event) {
             switch (event.getAction()) {
                 case MotionEvent.ACTION_UP:
-                    closeMenu();
+                    turnMini();
                     return true;
                 case MotionEvent.ACTION_OUTSIDE:
-                    closeMenu();
+                    turnMini();
                     return true;
             }
             return super.onTouchEvent(event);
@@ -410,7 +410,7 @@ public class FloatWindow {
                     break;
                 case MotionEvent.ACTION_OUTSIDE:
                     if(isOpen) {
-                        closeMenu();
+                        turnMini();
                         return true;
                     }
                     break;
@@ -452,7 +452,7 @@ public class FloatWindow {
             if(System.currentTimeMillis() - downTimeMillis > 1200) {
                 //  长按
             } else {
-                openMenu();  //点击
+                showPlayer();  //点击
             }
         } else {
             ValueAnimator animator = alignAnimator(x, y);
