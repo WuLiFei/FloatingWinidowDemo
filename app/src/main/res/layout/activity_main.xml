@@ -50,4 +50,17 @@
         android:layout_marginLeft="12dp"
         layout="@layout/universal_div"
         android:layout_height="1px"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <TextView
+        android:id="@+id/main_version_name"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:textColor="#72727272"
+        android:text="1245"/>
 </LinearLayout>

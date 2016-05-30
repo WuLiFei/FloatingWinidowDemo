@@ -9,9 +9,11 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.TextView;
 
 import com.example.mario.floatingwindowtest.services.MusicService;
 import com.example.mario.floatingwindowtest.R;
+import com.example.mario.floatingwindowtest.utils.ApplicationUtils;
 
 /**
  * Created by MarioStudio on 2016/5/24.
@@ -21,6 +23,7 @@ public class MainActivity extends BaseActivity implements CompoundButton.OnCheck
 
     private ServiceConnection serviceConnection;
     private Intent serviceIntent;
+    private TextView versionName;
     private CheckBox checkBox;
 
     private MusicService musicService;
@@ -37,6 +40,9 @@ public class MainActivity extends BaseActivity implements CompoundButton.OnCheck
     private void initAllViews() {
         checkBox = (CheckBox) findViewById(R.id.main_check_box);
         checkBox.setOnCheckedChangeListener(this);
+
+        versionName = (TextView) findViewById(R.id.main_version_name);
+        versionName.setText(ApplicationUtils.getAppVersionName(this));
     }
 
     private void bindService() {
