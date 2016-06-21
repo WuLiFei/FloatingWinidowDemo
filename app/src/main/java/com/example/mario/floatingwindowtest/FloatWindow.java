@@ -171,7 +171,8 @@ public class FloatWindow {
     private void initLayoutParams() {
         getLayoutParams().flags = getLayoutParams().flags
                 | WindowManager.LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH
-                | WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL;
+                | WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL
+                | WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;
         getLayoutParams().dimAmount = 0.2f;   
         getLayoutParams().type = WindowManager.LayoutParams.TYPE_SYSTEM_ALERT;
         getLayoutParams().height = WindowManager.LayoutParams.WRAP_CONTENT;
