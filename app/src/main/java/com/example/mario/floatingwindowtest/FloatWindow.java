@@ -232,6 +232,7 @@ public class FloatWindow {
      * */
     public void dismiss() {
         if(getContentView() != null && isShowing()) {
+            handler.removeMessages(WHAT_HIDE);
             getWindowManager().removeView(getContentView());
             mIsShowing = false;
         }
